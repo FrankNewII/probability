@@ -19,21 +19,23 @@ Combinator.combinations = function comb(arr, length, str, nArr) {
     return nArr;
 };
 
-Combinator.permutations = function perm(arr, used, willReturn = true) {
+Combinator.permutations = function perm(arr, used, result) {
+    if (arr.split) arr = arr.split('');
     used = used || [];
-    const result = [];
+    result = result || [];
 
     for(let i = 0; i < arr.length; i++) {
         const v = arr[i];
         used.push(v);
-        arr.splice(i, 1);
-        perm(arr, used, false);
-        arr.splice(i, 0, v);
 
-
-        if (willReturn) {
+        if (arr.length === 1) {
             result.push(used.join(''));
-            used = [];
+            used.pop();
+        } else {
+            arr.splice(i, 1);
+            perm(arr, used, result);
+            arr.splice(i, 0, v);
+            used.pop();
         }
     }
 
