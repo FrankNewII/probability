@@ -18,3 +18,24 @@ Combinator.combinations = function comb(arr, length, str, nArr) {
 
     return nArr;
 };
+
+Combinator.permutations = function perm(arr, used, willReturn = true) {
+    used = used || [];
+    const result = [];
+
+    for(let i = 0; i < arr.length; i++) {
+        const v = arr[i];
+        used.push(v);
+        arr.splice(i, 1);
+        perm(arr, used, false);
+        arr.splice(i, 0, v);
+
+
+        if (willReturn) {
+            result.push(used.join(''));
+            used = [];
+        }
+    }
+
+    return result;
+};
