@@ -1,5 +1,5 @@
 function Combinator() {
-    throw "Combinator is a static class. Use static methods of that class";
+    throw "Combinator is a static class. Use static methods of this class";
 }
 
 Combinator.combinations = function comb(arr, length, str, nArr) {
